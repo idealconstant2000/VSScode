@@ -8,6 +8,7 @@ def print_greeting():
     print(greetings)
 
 # run it here!
+print_greeting()
 
      
     # b. Convert this implicit return function to an explicit return function!
@@ -15,13 +16,22 @@ def print_greeting():
 def return_greeting():
     greetings = "salutations"
     # CHANGE LINE BELOW
-    print(greetings)
+    return(greetings)
     # CHANGE LINE ABOVE
 
     # c. Run the newly printed code! (Examine NOTHING is printed to the terminal!)
+print(return_greeting())
 
 # run it here!
 
     # d. Create a variable my_greeting and store the return value of return_hello then print the variable!
 
+def return_hello():
+    return "hello"
+
+# Store the return value
+my_greeting = return_hello()
+
+# Print the variable
+print(my_greeting)
 
