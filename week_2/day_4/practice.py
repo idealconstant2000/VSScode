@@ -3,8 +3,11 @@
 # Dictionary
 
 # create a new dictionary named my_person with one key value pair of name : [YOUR_NAME]
+my_person = {"name": "John Allen"}
 
 # verify the type of my_person to be a dictionary by using type
+print(type(my_person))  # should print <class 'dict'>
+
 
 # Next we will use a pre-made dictionary:
 
@@ -15,7 +18,13 @@ person_1 = {
     }
 
 # add a key value pair to person_1 with the last_name of Doo
+person_1["last_name"] = "Doo"
 
 # update person_1 favorite_snack to "Scooby Snacks"
+person_1["favorite_snack"] = "Scooby Snacks"
 
 # Remove the "wears_glasses" key:value from person_1
+person_1.pop("wears_glasses")
+
+print(my_person)
+print(person_1)
