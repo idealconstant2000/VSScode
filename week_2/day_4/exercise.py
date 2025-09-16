@@ -16,12 +16,22 @@ inventory = {
 
     # NOTE: recall that item represents the key of the key:value pair
 
+for item in inventory:
+    inventory[item] -= 1   # decrement each value by 1
+
+print(inventory)
+
 
 # 2. Implicit Functions 
 # (When we work with global variables/objects and don't return anything, 
 # these functions are implicit return functions!)
 
     # a. Dictionaries - create a function that takes in a dictionary which updates the "role" key value pair and makes it uppercase
+
+
+def update_role(person_dict):
+    if "role" in person_dict:  # make sure "role" key exists
+        person_dict["role"] = person_dict["role"].upper()
 
 user_1 = {
     "firstName": "Stephanie",
@@ -47,7 +57,11 @@ user_3 = {
     # b. Dictionaries - Run the functions (3 times for each user!)
 
 instructor_list = [user_1, user_2, user_3]
-# print(instructor_list)
+
+for user in instructor_list:
+    update_role(user)
+
+print(instructor_list)
 
     # c. List - create a function that takes in the list and 
     # checks if the each user's role is equal to "INSTRUCTOR". 
@@ -55,7 +69,26 @@ instructor_list = [user_1, user_2, user_3]
 
 # role_check(instructor_list)
 
+def role_check(users):
+    for user in users:
+        if user.get("role") == "INSTRUCTOR":   # check if role is INSTRUCTOR
+            print(f"{user['firstName']} {user['lastName']}: VALID")
+        else:
+            print(f"{user['firstName']} {user['lastName']}: INVALID")
+
     # d. import the random module and update the function to re-assign the id of each user
+import random
+
+def role_check(users):
+    for user in users:
+        # Reassign ID with a random 5-digit number
+        user["id"] = str(random.randint(10000, 99999))
+
+        # Check if role is INSTRUCTOR
+        if user.get("role") == "INSTRUCTOR":
+            print(f"{user['firstName']} {user['lastName']}: VALID (new ID: {user['id']})")
+        else:
+            print(f"{user['firstName']} {user['lastName']}: INVALID (new ID: {user['id']})")
 
     # e. don't forget to run it!
     
@@ -68,3 +101,14 @@ user_info = [46453, "Devin", "Smith"]
     #   - id: user_list[0]
     #   - first_name: user_list[1]
     #   - last_name: user_list[2]
+
+def create_user_dict(user_list):
+    return {
+        "id": user_list[0],
+        "first_name": user_list[1],
+        "last_name": user_list[2]
+    }
+
+
+user_dict = create_user_dict(user_info)
+print(user_dict)
