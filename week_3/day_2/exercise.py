@@ -16,13 +16,14 @@ print(response)
 # assign a variable json_data to the responses' json
 
 import json
-json_data = response.json()
+#json_data = response.json()
+json_data = response.text
 
 # print to verify a crazy body of strings!
 print(json_data)
 
 # lets make it into a python dictionary by using the appropriate json method
-python_data = json.loads(response.text)
+python_data = json.loads(json_data)
 
 
 # print the newly created python object
