@@ -8,16 +8,54 @@
 # EASY MODE
 
 # import the appropriate modules (you have 3)
+import json
+import requests
+from openpyxl import Workbook
 
-# character_url = "https://rickandmortyapi.com/api/character"
-# set up a workbook and worksheet titled "Rick and Morty Characters"
+character_url = "https://rickandmortyapi.com/api/character"
+
+# Set up a workbook and worksheet titled "Rick and Morty Characters"
+wb = Workbook()
+ws_characters = wb.active
+ws_characters.title = "Rick and Morty Characters"
+
+row = 2  # start writing data on row 2 (row 1 is for headers)
+headers_written = False
+headers = []
+
+url = character_url
+while url:
+    resp = requests.get(url)
+    resp.raise_for_status()
+    data = resp.json()  # same as json.loads(resp.text)
+
+    # Write headers once, based on the first character's keys
+    if not headers_written:
+        headers = list(data["results"][0].keys())
+        for col, key in enumerate(headers, start=1):
+            ws_characters.cell(row=1, column=col, value=key)
+        headers_written = True
+
+    # Write character rows
+    for character in data["results"]:
+        for col, key in enumerate(headers, start=1):
+            value = character.get(key)
+            # Convert dicts/lists to strings so openpyxl can write them
+            if isinstance(value, (dict, list)):
+                value = json.dumps(value)  # prettier than str()
+            ws_characters.cell(row=row, column=col, value=value)
+        row += 1
+
+    # Follow pagination
+    url = data.get("info", {}).get("next")
+
+# Save the workbook
+wb.save("./week_3/spreadsheets/exercise.xlsx")
+print("Wrote exercise.xlsx")
 
 
-# # assign a variable 'data' with the returned GET request
 
-# create the appropriate headers in openpyxl for all of the keys for a single character
 
-# loop through all of the 'results' of the data to populate the rows and columns for each character
 
 # NOTE: due to the headers, the rows need to be offset by one!
 
@@ -46,5 +84,3 @@
 # NOTE: need to make use of if statements to see if url exists or not
 # (contact instructors for office hours if stuck!)
 
-
-# wb.save("./spreadsheets/exercise.xlsx")
