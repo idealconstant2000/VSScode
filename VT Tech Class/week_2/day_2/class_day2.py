@@ -37,12 +37,12 @@
 
 # multiplep arameters
 
-# def add_five(any_number):
-#     print(any_number + 5)
-# add_five(10)
-# add_five(20)
+def add_five(any_number):
+    print(any_number + 5)
+add_five(10)
+add_five(20)
 
-# def multi_parameter(first_name, last_name, location):
-#     print("My name is " + first_name + " " + last_name + ", and I live in " + location + ".")
+def multi_parameter(first_name, last_name, location):
+    print("My name is " + first_name + " " + last_name + ", and I live in " + location + ".")
 
-# multi_parameter("Daniel", "Kim", "Los Angeles")
+multi_parameter("Daniel", "Kim", "Los Angeles")
