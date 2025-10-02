@@ -1,0 +1,19 @@
+# lst = list()
+# for key, val in counts.items():
+#     newtup = (key, val)
+#     lst.append(newtup)
+#     
+# lst = sorted(lst, reverse=True)
+# 
+# for val, key in lst[:10]:
+#     print(key, val)
+
+fhand = open("romeo.txt")
+counts = dict()
+for line in fhand:
+    words = line.split()
+    for word in words:
+        counts[word] = counts.get(word, 0) + 1
+
+#list comprehension
+print(sorted([(v,k) for k,v in counts.items()],reverse=True)[:10])
